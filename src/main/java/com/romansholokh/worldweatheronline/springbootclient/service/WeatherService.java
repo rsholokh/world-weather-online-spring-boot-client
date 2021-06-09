@@ -19,6 +19,11 @@ public class WeatherService {
    }
 
     public Weather getWeatherByParams(String city, String date) {
+
         return weatherRepository.findWeatherByCityAndDate(city, date);
+    }
+
+    public Weather update(Weather weather) {
+        return weatherRepository.save(weather);
     }
 }

@@ -24,9 +24,15 @@ public class WeatherController {
 
         if (weatherService.existsWeatherByParams(city, date)) {
             weather = weatherService.getWeatherByParams(city, date);
+            int numberOfInquiries = weather.getNumberOfInquiries();
+            numberOfInquiries++;
+            weather.setNumberOfInquiries(numberOfInquiries);
+            weatherService.update(weather);
 
             System.out.println(weather.toString());
             System.out.println("weather record exist in db");
+
+            return null;
         }
 
         System.out.println("weather record doesnt exist in db");
