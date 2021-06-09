@@ -2,10 +2,8 @@ package com.romansholokh.worldweatheronline.springbootclient.entity;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @NoArgsConstructor
@@ -14,7 +12,7 @@ public class Weather {
 
     private int id;
     private String city;
-    private Date date;
+    private String date;
     private String maxTemp;
     private String avgTemp;
     private String minTemp;
@@ -34,9 +32,8 @@ public class Weather {
     }
 
     @Basic
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
