@@ -23,6 +23,9 @@ public class WeatherController {
         String date = weather.getDate();
 
         if (weatherService.existsWeatherByParams(city, date)) {
+            weather = weatherService.getWeatherByParams(city, date);
+
+            System.out.println(weather.toString());
             System.out.println("weather record exist in db");
         }
 

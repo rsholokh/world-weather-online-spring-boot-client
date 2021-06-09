@@ -1,5 +1,6 @@
 package com.romansholokh.worldweatheronline.springbootclient.service;
 
+import com.romansholokh.worldweatheronline.springbootclient.entity.Weather;
 import com.romansholokh.worldweatheronline.springbootclient.repo.WeatherRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,4 +18,7 @@ public class WeatherService {
        return weatherRepository.existsWeatherByCityAndDate(city, date);
    }
 
+    public Weather getWeatherByParams(String city, String date) {
+        return weatherRepository.findWeatherByCityAndDate(city, date);
+    }
 }

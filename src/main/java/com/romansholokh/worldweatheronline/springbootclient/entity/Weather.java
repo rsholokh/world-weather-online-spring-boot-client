@@ -2,12 +2,14 @@ package com.romansholokh.worldweatheronline.springbootclient.entity;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 @Setter
+@ToString
 public class Weather {
 
     private int id;
