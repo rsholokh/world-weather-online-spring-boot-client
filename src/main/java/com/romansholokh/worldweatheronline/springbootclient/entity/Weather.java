@@ -2,6 +2,7 @@ package com.romansholokh.worldweatheronline.springbootclient.entity;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,43 +22,44 @@ public class Weather {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
 
     @Basic
-    @Column(name = "city", nullable = false)
+    @Column(name = "city")
     public String getCity() {
         return city;
     }
 
     @Basic
-    @Column(name = "date", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "date")
     public Date getDate() {
         return date;
     }
 
     @Basic
-    @Column(name = "max_temp", nullable = false)
+    @Column(name = "max_temp")
     public String getMaxTemp() {
         return maxTemp;
     }
 
     @Basic
-    @Column(name = "avg_temp", nullable = false)
+    @Column(name = "avg_temp")
     public String getAvgTemp() {
         return avgTemp;
     }
 
     @Basic
-    @Column(name = "min_temp", nullable = false)
+    @Column(name = "min_temp")
     public String getMinTemp() {
         return minTemp;
     }
 
     @Basic
-    @Column(name = "number_of_inquiries", nullable = false)
+    @Column(name = "number_of_inquiries")
     public int getNumberOfInquiries() {
         return numberOfInquiries;
     }
