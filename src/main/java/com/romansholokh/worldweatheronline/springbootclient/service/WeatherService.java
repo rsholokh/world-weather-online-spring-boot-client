@@ -1,10 +1,10 @@
 package com.romansholokh.worldweatheronline.springbootclient.service;
 
 import com.romansholokh.worldweatheronline.springbootclient.entity.Weather;
+import com.romansholokh.worldweatheronline.springbootclient.jsonparser.JSONParser;
 import com.romansholokh.worldweatheronline.springbootclient.okhttp.OkHttp;
 import com.romansholokh.worldweatheronline.springbootclient.repo.WeatherRepository;
 import lombok.AllArgsConstructor;
-import net.minidev.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +17,7 @@ public class WeatherService {
 
     private final WeatherRepository weatherRepository;
     private final OkHttp client;
+    private final JSONParser jsonParser;
 
     public boolean existsWeatherByParams(String city, String date) {
 
@@ -32,7 +33,11 @@ public class WeatherService {
         return weatherRepository.save(weather);
     }
 
-    public JSONObject getWeatherFromUrl(String url) throws IOException {
+    public String getWeatherFromUrl(String url) throws IOException {
         return client.getFromUrl(url);
+    }
+
+    public void parseWeatherFromJSONResponse(String jsonString) {
+        jsonParser.parseWeatherFromJSONResponse(jsonString);
     }
 }
