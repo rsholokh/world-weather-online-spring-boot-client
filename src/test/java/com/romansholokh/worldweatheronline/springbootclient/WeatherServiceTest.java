@@ -43,4 +43,22 @@ public class WeatherServiceTest {
         verify(weatherRepository).save(weather);
     }
 
+    @Test
+    public void whenGivenCityAndDate_shouldReturnWeather_ifExists() {
+        Weather weather = new Weather();
+        weather.setCity("London");
+        weather.setDate("2021-06-10");
+        weather.setMaxTemp("30°С");
+        weather.setAvgTemp("25°С");
+        weather.setMinTemp("20°С");
+        weather.setNumberOfInquiries(0);
+        weatherService.add(weather);
+        when(weatherRepository.findWeatherByCityIgnoreCaseAndDate("London", "2021-06-10"))
+                .thenReturn(weather);
+        Weather created = weatherService.getWeatherByParams(weather.getCity(), weather.getDate());
+        assertThat(created.getCity()).isSameAs(weather.getCity());
+        assertThat(created.getDate()).isSameAs(weather.getDate());
+
+    }
+
 }
