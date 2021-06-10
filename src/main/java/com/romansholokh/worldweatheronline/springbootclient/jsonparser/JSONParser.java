@@ -5,10 +5,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Component
 public class JSONParser {
 
-    public void parseWeatherFromJSONResponse(String jsonString) {
+    public Map<String, String> parseWeatherFromJSONResponse(String jsonString) {
 
         JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
 
@@ -25,10 +28,20 @@ public class JSONParser {
         String avgTempCString = date.get("avgtempC").getAsString();
         String minTempCString = date.get("mintempC").getAsString();
 
+        Map<String, String> weatherFields = new HashMap<>();
+
+        weatherFields.put("city", cityString);
+        weatherFields.put("date", dateString);
+        weatherFields.put("maxTempC", maxTempCString);
+        weatherFields.put("avgTempC", avgTempCString);
+        weatherFields.put("minTempC", avgTempCString);
+
         System.out.println(cityString);
         System.out.println(dateString);
         System.out.println(maxTempCString);
         System.out.println(avgTempCString);
         System.out.println(minTempCString);
+
+        return weatherFields;
     }
 }
