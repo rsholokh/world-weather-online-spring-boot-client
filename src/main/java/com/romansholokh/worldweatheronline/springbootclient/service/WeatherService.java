@@ -25,12 +25,12 @@ public class WeatherService {
 
     public boolean existsWeatherByParams(String city, String date) {
 
-       return weatherRepository.existsWeatherByCityAndDate(city, date);
+       return weatherRepository.existsWeatherByCityIgnoreCaseAndDate(city, date);
    }
 
     public Weather getWeatherByParams(String city, String date) {
 
-        return weatherRepository.findWeatherByCityAndDate(city, date);
+        return weatherRepository.findWeatherByCityIgnoreCaseAndDate(city, date);
     }
 
     public Weather update(Weather weather) {
