@@ -6,8 +6,6 @@ import com.romansholokh.worldweatheronline.springbootclient.objectbuilder.Weathe
 import com.romansholokh.worldweatheronline.springbootclient.okhttp.OkHttp;
 import com.romansholokh.worldweatheronline.springbootclient.repo.WeatherRepository;
 import lombok.AllArgsConstructor;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,9 +46,5 @@ public class WeatherService {
 
     public Weather add(Weather weather) {
         return weatherRepository.save(weather);
-    }
-
-    public JSONObject parseStringToJsonObject(String jsonString) throws ParseException {
-        return jsonWeatherParser.parseStringToJsonObject(jsonString);
     }
 }
