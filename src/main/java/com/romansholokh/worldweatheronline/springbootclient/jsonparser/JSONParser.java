@@ -28,6 +28,11 @@ public class JSONParser {
         String avgTempCString = date.get("avgtempC").getAsString();
         String minTempCString = date.get("mintempC").getAsString();
 
+        cityString = cityString.substring(0, cityString.lastIndexOf(","));
+        maxTempCString = maxTempCString + "°С";
+        avgTempCString = avgTempCString + "°С";
+        minTempCString = minTempCString + "°С";
+
         Map<String, String> weatherFields = new HashMap<>();
 
         weatherFields.put("city", cityString);
