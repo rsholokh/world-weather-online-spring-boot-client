@@ -37,6 +37,8 @@ public class WeatherController {
             return ResponseEntity.ok(weather);
         }
 
+        System.out.println("weather record doesnt exist in db");
+
         String url = String.format("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=9ef1428da88e444a88c110159210806&q=%s&format=json&num_of_days=1&date=%s&fx=yes&cc=no&mca=no&fx24=no&includelocation=no&show_comments=no&showlocaltime=no&alerts=no&aqi=no",
                 city, date);
 
@@ -44,8 +46,6 @@ public class WeatherController {
 
         weather = weatherService.parseWeatherFromJSONResponse(jsonString);
 
-        System.out.println("weather record doesnt exist in db");
-
-        return null;
+        return ResponseEntity.ok(weatherService.add(weather));
     }
 }

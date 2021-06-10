@@ -43,4 +43,8 @@ public class WeatherService {
 
         return weatherObjectBuilder.buildWeatherObject(jsonParser.parseWeatherFromJSONResponse(jsonString));
     }
+
+    public Weather add(Weather weather) {
+        return weatherRepository.save(weather);
+    }
 }
