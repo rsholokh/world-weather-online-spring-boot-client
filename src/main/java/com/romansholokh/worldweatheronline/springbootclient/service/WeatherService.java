@@ -2,6 +2,7 @@ package com.romansholokh.worldweatheronline.springbootclient.service;
 
 import com.romansholokh.worldweatheronline.springbootclient.entity.Weather;
 import com.romansholokh.worldweatheronline.springbootclient.jsonparser.JSONParser;
+import com.romansholokh.worldweatheronline.springbootclient.objectbuilder.WeatherObjectBuilder;
 import com.romansholokh.worldweatheronline.springbootclient.okhttp.OkHttp;
 import com.romansholokh.worldweatheronline.springbootclient.repo.WeatherRepository;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ public class WeatherService {
     private final WeatherRepository weatherRepository;
     private final OkHttp client;
     private final JSONParser jsonParser;
+    private final WeatherObjectBuilder weatherObjectBuilder;
 
     public boolean existsWeatherByParams(String city, String date) {
 
@@ -37,7 +39,8 @@ public class WeatherService {
         return client.getFromUrl(url);
     }
 
-    public void parseWeatherFromJSONResponse(String jsonString) {
-        jsonParser.parseWeatherFromJSONResponse(jsonString);
+    public Weather parseWeatherFromJSONResponse(String jsonString) {
+
+        return weatherObjectBuilder.buildWeatherObject(jsonParser.parseWeatherFromJSONResponse(jsonString));
     }
 }
