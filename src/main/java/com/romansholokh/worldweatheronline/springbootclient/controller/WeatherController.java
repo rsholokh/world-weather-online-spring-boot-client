@@ -3,11 +3,9 @@ package com.romansholokh.worldweatheronline.springbootclient.controller;
 import com.romansholokh.worldweatheronline.springbootclient.entity.Weather;
 import com.romansholokh.worldweatheronline.springbootclient.service.WeatherService;
 import lombok.AllArgsConstructor;
+import org.json.simple.parser.ParseException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -17,6 +15,13 @@ import java.io.IOException;
 public class WeatherController {
 
     private WeatherService weatherService;
+
+    @GetMapping("/checkWeather")
+    public ResponseEntity requestExample() throws ParseException {
+        String jsonRequestExample = "{\"city\":\"London\",\"date\":\"2021-06-10\"}";
+
+        return ResponseEntity.ok(weatherService.parseStringToJsonObject(jsonRequestExample));
+    }
 
     @PostMapping("/checkWeather")
     public ResponseEntity getWeather(@RequestBody Weather weather) throws IOException {
