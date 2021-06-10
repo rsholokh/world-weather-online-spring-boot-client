@@ -42,7 +42,7 @@ public class WeatherController {
 
         String jsonString = weatherService.getWeatherFromUrl(url);
 
-        weatherService.parseWeatherFromJSONResponse(jsonString);
+        weather = weatherService.parseWeatherFromJSONResponse(jsonString);
 
         System.out.println("weather record doesnt exist in db");
 
