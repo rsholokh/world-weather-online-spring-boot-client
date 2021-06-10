@@ -1,11 +1,13 @@
 package com.romansholokh.worldweatheronline.springbootclient.service;
 
 import com.romansholokh.worldweatheronline.springbootclient.entity.Weather;
-import com.romansholokh.worldweatheronline.springbootclient.jsonparser.JSONParser;
+import com.romansholokh.worldweatheronline.springbootclient.jsonparser.JSONWeatherParser;
 import com.romansholokh.worldweatheronline.springbootclient.objectbuilder.WeatherObjectBuilder;
 import com.romansholokh.worldweatheronline.springbootclient.okhttp.OkHttp;
 import com.romansholokh.worldweatheronline.springbootclient.repo.WeatherRepository;
 import lombok.AllArgsConstructor;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +20,7 @@ public class WeatherService {
 
     private final WeatherRepository weatherRepository;
     private final OkHttp client;
-    private final JSONParser jsonParser;
+    private final JSONWeatherParser jsonWeatherParser;
     private final WeatherObjectBuilder weatherObjectBuilder;
 
     public boolean existsWeatherByParams(String city, String date) {
@@ -41,10 +43,14 @@ public class WeatherService {
 
     public Weather parseWeatherFromJSONResponse(String jsonString) {
 
-        return weatherObjectBuilder.buildWeatherObject(jsonParser.parseWeatherFromJSONResponse(jsonString));
+        return weatherObjectBuilder.buildWeatherObject(jsonWeatherParser.parseWeatherFromJSONResponse(jsonString));
     }
 
     public Weather add(Weather weather) {
         return weatherRepository.save(weather);
+    }
+
+    public JSONObject parseStringToJsonObject(String jsonString) throws ParseException {
+        return jsonWeatherParser.parseStringToJsonObject(jsonString);
     }
 }
