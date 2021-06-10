@@ -3,13 +3,16 @@ package com.romansholokh.worldweatheronline.springbootclient.jsonparser;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class JSONParser {
+public class JSONWeatherParser {
 
     public Map<String, String> parseWeatherFromJSONResponse(String jsonString) {
 
@@ -39,7 +42,7 @@ public class JSONParser {
         weatherFields.put("date", dateString);
         weatherFields.put("maxTempC", maxTempCString);
         weatherFields.put("avgTempC", avgTempCString);
-        weatherFields.put("minTempC", avgTempCString);
+        weatherFields.put("minTempC", minTempCString);
 
         System.out.println(cityString);
         System.out.println(dateString);
@@ -49,4 +52,12 @@ public class JSONParser {
 
         return weatherFields;
     }
+
+    public JSONObject parseStringToJsonObject(String jsonString) throws ParseException {
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(jsonString);
+
+        return json;
+    }
+
 }
